@@ -308,6 +308,10 @@ def accel_calibrate():
         conn.close()
         util.show_error('Parameter load failed', ex)
 
+    logger.info("Resetting AHRS_ORIENTATION to 0")
+    util.param_set(conn.test, 'AHRS_ORIENTATION', 0)
+    time.sleep(1)
+
     if ETE == 0:
             rotate.center_servos(conn)
     conn.close()
